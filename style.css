@@ -89,7 +89,10 @@ body {
     border-radius: 10px;
     background-image: linear-gradient(to top, #ffffff, #ffffff, #88acc9);
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
 }
 
@@ -118,6 +121,9 @@ body {
     transition: 350ms;
     color: #000000;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
     display: block;
 }
 
