@@ -12,8 +12,9 @@ function fecharlogin2()   {
     document.getElementById('segundo').style.top = "-100%";
 }
 
+
 const api = {
-    key: "92c9e9841858f7442a67c01e9f7a13d2",
+    key: "b1acd38efcd959af9979088d310b48a2",
     base: "https://api.openweathermap.org/data/2.5/",
     lang: "pt_br",
     units: "metric",
@@ -40,7 +41,6 @@ const temp_unit = document.querySelector('.tempo-temp span');
 const max_min = document.querySelector('.max-min');
 
 const humidade = document.querySelector('.humidade');
-
 
 function javascript(){
     
@@ -130,6 +130,23 @@ function javascript(){
 
         humidade.innerHTML = weather.main.humidity;
     }
+
+    function dataDeHoje(d) {
+
+        let dias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+        let meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julio", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+        let diaSemana = dias[d.getDay()];
+        let dia = d.getDate();
+        let mes = meses[d.getMonth()];
+        let ano = d.getFullYear();
+
+        return `${diaSemana}, ${dia} de ${mes} ${ano}`;
+    }
+
+    function Letter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 }
 
 const email = document.getElementById("email");
@@ -147,3 +164,84 @@ function cadastrarDados()   {
     dado3.textContent = password2.value;
     perfil2.document = foto.value
 }
+
+function abrirlogin3()   {
+    document.getElementById('terceiro').style.top = "17.5%";
+}
+function fecharlogin3()   {
+    document.getElementById('terceiro').style.top = "-100%";
+}
+
+function pegaToken(){
+
+    const inputEmail = document.querySelector('input[type="text"]');
+    const inputPassword = document.querySelector('input[type="password"]');
+
+    fetch('https://reqres.in/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: inputEmail.value,
+            password: inputPassword.value,
+        })
+    }).then((response) => {
+        if (response.status == 200) {
+            javascript();
+            textForm2.textContent = "Login feito com sucesso!";
+            document.getElementById("textForm2").style.color = "green";
+            document.getElementById("textForm2").style.backgroundColor = '#c2dbbe';
+        }else{
+            textForm2.textContent = "Usuário incorreto!";
+            document.getElementById("textForm2").style.color = "red";
+            document.getElementById("textForm2").style.backgroundColor = '#dbbebe';
+        }
+        return response.json();
+    }).then((data) => {
+        console.log(data)
+    })
+}
+
+function validatorEmail(email) {
+    let emailPattern = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+    return emailPattern.test(email);
+}
+    
+function validatorPassword(password) {
+    let passwordPattern = /^[a-zA-Z0-9!@#$%^&*]{4,16}$/;
+    return passwordPattern.test(password);
+}
+
+form.addEventListener("submit", (e) => {
+    
+    e.preventDefault()
+
+    if (validatorEmail(email.value) !== true) {
+        textEmail.textContent = "O formato do email deve ser Exemplo: xxxxx@xxx.com";
+    } else {
+        textEmail.textContent = "";
+    }
+    
+    if (validatorPassword(password.value) !== true) {
+        textPassword.textContent = "A senha deve conter no mínimo 4 caracteres";
+    } else {
+        textPassword.textContent = "";
+    }
+      
+    if (email.value == "" || password.value == "") {
+        textForm.textContent = "Você precisa preencher todos os campos!";
+    } else {
+        textForm.textContent = "";
+    }
+    
+    if ( validatorEmail(email.value) === true && validatorPassword(password.value) === true ) {
+        textForm.textContent = "";
+        textEmail.textContent = "";
+        textPassword.textContent = "";
+    } else {
+        console.log("Requisição não atendida");
+    }
+
+    pegaToken();
+
+
+});

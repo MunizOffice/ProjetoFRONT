@@ -1,20 +1,31 @@
-* {
-    margin: 0px;
-    font-family: "Roboto";
-}
-
 body {
-    background-color: #f2f2f2;
+    background: linear-gradient(180deg, rgb(175, 246, 248) 0%, #fff9d9 100%);
     margin: 0%;
     padding: 0%;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+small {
+    color: #f70000ad;
 }
 
 .azul1 {
-    height: 80px;
+    height: 120px;
     width: 100%;
-    background-color: #0080cd;
+    background-color: #22393f;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.azul2 {
+    height: 40px;
+    width: 100%;
+    background-color: #0c1e2e;
+    font-size: 13px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,8 +34,8 @@ body {
 
 .form-control {
     display: flex;
-    height: 37px;
-    width: 49%;
+    height: 45%;
+    width: 50%;
     border: none;
     text-align: left;
     border-radius: 5px;
@@ -36,8 +47,8 @@ body {
 
 .azullogin {
     display: flex;
-    height: 40px;
-    width: 155px;
+    height: 45%;
+    width: 17%;
     border: 1px solid #ffffff;
     background-color: #10a1dd;
     border-radius: 8px;
@@ -112,11 +123,6 @@ body {
     display: block;
 }
 
-.close:hover {
-    color: #000000;
-    opacity: 1;
-}
-
 .log {
     margin-top: 6%;
     margin-left: 7%;
@@ -177,6 +183,15 @@ body {
     color: #ffffff;
 }
 
+.botaoo3 {
+    margin-top: 5%;
+    height: 50px;
+    width: 40%;
+    border-radius: 50px;
+    border: none;
+    background-color: #1d1c1c;
+    color: #ffffff;
+}
 
 #email {
     height: 50px;
@@ -206,9 +221,151 @@ body {
     border-radius: 8px;
 }
 
-.azul2 {
+.perfil2 {
     height: 40px;
+    width: 40px;
+}
+
+.date {
+    font-size: 16px;
+}
+
+.low-high {
+    font-size: 22px;
+}
+
+.flutuante {
+    height: 100%;
     width: 100%;
-    background-color: #0f4783;
-    font-size: 13px;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.branco1 {
+    height: 420px;
+    width: 50%;
+    background-color: #ffffff;
+    color: #404040;
+    border-radius: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.linha1 {
+    margin-top: 40px;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.tempo-img {
+    display: flex;
+    height: 80px;
+    width: 80px;
+}
+
+.condicao {
+    font-size: 50px;
+    margin: 0%;
+    color: #404040;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tempo-temp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.max-min {
+    margin: 0%;
+}
+
+.linha3 {
+    display: flex;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.ceu {
+    font-size: 15px;
+}
+
+.icon1 {
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.linha5 {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.porc {
+    margin-left: 2%;
+    text-transform: lowercase;
+    color: black;
+    font-size: 15px;
+}
+
+.info {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.informacoes {
+    color: #f9f9f9;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0080cd;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 18px;
+    border-radius: 20px;
+    border: 8px solid transparent;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.texto {
+    margin-top: 10px;
+    font-size: 14px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.data {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.date {
+    font-size: 14px;
 }
