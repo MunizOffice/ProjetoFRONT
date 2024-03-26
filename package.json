@@ -1,0 +1,22 @@
+{
+  "name": "projetofront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MunizOffice/ProjetoFRONT.git"
+  },
+  "author": "MunizOffice",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MunizOffice/ProjetoFRONT/issues"
+  },
+  "homepage": "https://github.com/MunizOffice/ProjetoFRONT#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
