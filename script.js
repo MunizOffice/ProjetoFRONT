@@ -41,7 +41,9 @@ const max_min = document.querySelector('.max-min');
 
 const humidade = document.querySelector('.humidade');
 
+
 function javascript(){
+    
     window.addEventListener('load', () => {
 
         navigator.geolocation.getCurrentPosition(setPosition, showError);
@@ -61,6 +63,9 @@ function javascript(){
 
         fetch(`${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
             .then(res => {
+                if (!res.ok) {
+                    throw new Error(`http ERROR`)
+                }
                 return res.json();
             })
             .catch(error => {
@@ -71,7 +76,6 @@ function javascript(){
             });
     }
 
-    
     pesquisa_button.addEventListener('click', function() {
         buscaResultado(pesquisa.value)
     })
@@ -88,6 +92,11 @@ function javascript(){
     function buscaResultado(cidade) {
 
         fetch(`${api.base}weather?q=${cidade}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`http error: status ${res.status}`)
+                }
+                return res.json();
             })
             .catch(error => {
                 alert(error.message)
@@ -97,6 +106,30 @@ function javascript(){
             });
     }
 
+    function displayResultado(weather) {
+
+        console.log(weather)
+
+        cidade.innerText = `${weather.name}, ${weather.sys.country}`;
+
+        let now = new Date();
+        date.innerText = dataDeHoje(now);
+
+        let iconName = weather.weather[0].icon;
+        tempo_img.innerHTML = `<img src="./icons/${iconName}.png">`;
+
+        let temperatura = `${Math.round(weather.main.temp)}`;
+        temp_number.innerHTML = temperatura;
+        temp_unit.innerHTML = `°c`;
+
+        weather_tempo = weather.weather[0].description;
+
+        weather_t.innerText = Letter(weather_tempo);
+
+        max_min.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
+
+        humidade.innerHTML = weather.main.humidity;
+    }
 }
 
 const email = document.getElementById("email");
