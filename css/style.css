@@ -1,7 +1,6 @@
 body {
-    background: linear-gradient(180deg, rgb(175, 246, 248) 0%, #fff9d9 100%);
-    margin: 0%;
-    padding: 0%;
+    background-image: url('/css/imagens/forest_mountains_sunset_cool_weather_minimalism.jpg');
+    background-size: cover;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
@@ -12,29 +11,25 @@ small {
 }
 
 .azul1 {
-    height: 120px;
+    height: 15vh;
     width: 100%;
-    background-color: #22393f;
+    background-color: #0c1e2e;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.azul2 {
-    height: 40px;
+.azul2{
+    height: 4vh;
     width: 100%;
-    background-color: #0c1e2e;
-    font-size: 13px;
+    background-image: linear-gradient(to top left, rgb(10, 35, 66), rgb(15, 113, 143));
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 .form-control {
     display: flex;
-    height: 45%;
+    height: 37%;
     width: 50%;
     border: none;
     text-align: left;
@@ -47,7 +42,7 @@ small {
 
 .azullogin {
     display: flex;
-    height: 45%;
+    height: 37%;
     width: 17%;
     border: 1px solid #ffffff;
     background-color: #10a1dd;
@@ -235,9 +230,7 @@ small {
 }
 
 .flutuante {
-    height: 100%;
-    width: 100%;
-    margin-top: 5%;
+    height: 81vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -245,8 +238,8 @@ small {
 }
 
 .branco1 {
-    height: 420px;
-    width: 50%;
+    height: 65%;
+    width: 37%;
     background-color: #ffffff;
     color: #404040;
     border-radius: 1rem;
@@ -330,7 +323,7 @@ small {
 .info {
     display: flex;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 15%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
