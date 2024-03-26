@@ -40,3 +40,20 @@ const temp_unit = document.querySelector('.tempo-temp span');
 const max_min = document.querySelector('.max-min');
 
 const humidade = document.querySelector('.humidade');
+
+function javascript(){
+    window.addEventListener('load', () => {
+
+        navigator.geolocation.getCurrentPosition(setPosition, showError);
+
+        function setPosition(position) {
+            console.log(position)
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+            Resultado(lat, long);
+        }
+        function showError(error) {
+            alert(`erro: ${error.message}`);
+        }
+    })
+}

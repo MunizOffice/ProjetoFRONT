@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto1</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <!-- HEADER -->
     <div class="azul1">
         <div class="pesquisa"></div>
         <input type="search" class="form-control" placeholder=" Busque por uma cidade..."
@@ -32,6 +33,8 @@
             <h1 class="azul letras">Faça seu login</h1>
         </button>
     </div>
+
+    <div class="azul2"></div>
 
     <!-- LOGIN E CADASTRO -->
     <div class="bg-modal" id="modal">
@@ -80,6 +83,55 @@
                 </form>
             </div>
         </div>
+    </div>
+
+    <!-- BRANCO -->
+    <div class="flutuante">
+        <div class="branco1">
+            <div class="linha1">Tempo agora em
+                <div class="cidade">Cidade, BR</div>
+            </div>
+    
+            <div class="condicao">
+                <div class="tempo-img">
+                    <img src="./icons/unknown.png">
+                </div>
+                <div class="tempo-temp">
+                    <div>00</div>
+                    <span>°c</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-min">00°c / 00°c</div>
+    
+    <div class="linha3">
+        <div class="icon1">
+            <img src="./css/imagens/cloud.svg" />&nbsp;&nbsp;
+            <div class="ceu">Situação do céu</div>
+        </div>
+    </div>
+    
+    <div class="linha5">
+        <img src="./css/imagens/humidity.svg" class="imgUmid" />
+        <span class='humidade'>00</span>%
+    </div>
+    
+    <div class="info">
+        <a href="https://www.climatempo.com.br/previsao-do-tempo/cidade/558/saopaulo-sp" class="informacoes"><b>Ver mais
+                informações</b></a>
+    </div>
+    
+    <div class="texto">
+        <span>Clima e previsão do tempo</span>
+        <div class="data">
+            <img src="./css/imagens/updated.png" class="update" />&nbsp;&nbsp;
+            <div class="date">
+                Data de hoje!
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 
