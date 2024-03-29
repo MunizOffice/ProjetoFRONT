@@ -6,40 +6,42 @@ const api = {
 };
 
 const pesquisa = document.querySelector(".form-control");
-
 const pesquisa_button = document.querySelector(".btn");
-
 const cidade = document.querySelector(".cidade");
-
 const date = document.querySelector(".date");
-
 const weather_t = document.querySelector(".ceu");
-
 const tempo_img = document.querySelector(".tempo-img");
-
 const tempo_temp = document.querySelector(".tempo-temp");
-
 const temp_number = document.querySelector(".tempo-temp div");
-
 const temp_unit = document.querySelector(".tempo-temp span");
-
 const max_min = document.querySelector(".max-min");
-
 const humidade = document.querySelector(".humidade");
 
-function displayBranco1() {
+function displayBranco1(isBusca) {
   const branco1 = document.querySelector('.branco1');
-  branco1.style.display = 'block'; // Torna o bloco visível
+  if (!isBusca && branco1) {
+    branco1.style.display = 'block';
+  }
 }
 
-function criarNovoBranco1() {
+function criarNovoBranco1(isBusca) {
+  if (!isBusca) return;
+
+  const blocoBrancoAtual = document.querySelector('.branco1');
   const novoBranco1 = document.createElement('div');
   novoBranco1.classList.add('branco1');
-  novoBranco1.innerHTML = `<!-- Conteúdo do bloco branco1 -->`;
-  document.body.appendChild(novoBranco1);
+  novoBranco1.classList.add('busca');
+
+  if (blocoBrancoAtual) {
+    blocoBrancoAtual.parentNode.insertBefore(novoBranco1, blocoBrancoAtual.nextSibling);
+    novoBranco1.innerHTML = blocoBrancoAtual.innerHTML;
+  } else {
+    document.body.appendChild(novoBranco1);
+  }
 }
 
 function javascript() {
+
   window.addEventListener("load", () => {
     navigator.geolocation.getCurrentPosition(setPosition, showError);
 
@@ -105,9 +107,9 @@ function javascript() {
         textBusca.classList.add('texto-sucesso');
         buscaContainer.classList.remove('busca-erro');
         buscaContainer.classList.add('busca-sucesso');
+        criarNovoBranco1(true);
         displayResultado(res);
-        displayBranco1();
-        criarNovoBranco1();
+        displayBranco1(true);
       })
       .catch((error) => {
         textBusca.textContent = "Cidade inexistente, digite novamente...";
@@ -183,4 +185,3 @@ function javascript() {
 }
 
 javascript();
-
