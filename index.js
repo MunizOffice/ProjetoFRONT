@@ -1,8 +1,10 @@
-    const express = require('express');
-    const app = express();
-    const port = 8000;
+const express = require('express');
+const app = express();
+const path = require('path');
+const port = 3004;
 
-    app.listen(port, ()=>{
-        console.log('OK Server')
-    })
-    
+app.use(express.static(path.join(__dirname, '')));
+
+app.listen(port, () => {
+    console.log(`Servidor está rodando em http://localhost:${port}`);
+});
