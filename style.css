@@ -40,6 +40,37 @@ small {
     color: rgba(255, 255, 255, 0.562);
 }
 
+.busca-container {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#textEmail {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-sucesso {
+    color: rgb(0, 155, 0);
+}
+
+.texto-erro {
+    color: red;
+}
+
+.busca-sucesso {
+    background-color: rgb(209, 247, 209);
+}
+
+.busca-erro {
+    background-color: rgb(248, 205, 205);
+}
+
 .flutuante {
     height: 81vh;
     display: flex;
@@ -50,13 +81,14 @@ small {
 
 .branco1 {
     height: 65%;
-    width: 37%;
+    width: 22%;
     background-color: #ffffff;
     color: #404040;
     border-radius: 1rem;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    display: none;
 }
 
 .linha1 {

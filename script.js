@@ -1,153 +1,186 @@
+const api = {
+  key: "b1acd38efcd959af9979088d310b48a2",
+  base: "https://api.openweathermap.org/data/2.5/",
+  lang: "pt_br",
+  units: "metric",
+};
 
-        function abrirlogin() {
-            document.getElementById('modal').style.top = "0%";
+const pesquisa = document.querySelector(".form-control");
+
+const pesquisa_button = document.querySelector(".btn");
+
+const cidade = document.querySelector(".cidade");
+
+const date = document.querySelector(".date");
+
+const weather_t = document.querySelector(".ceu");
+
+const tempo_img = document.querySelector(".tempo-img");
+
+const tempo_temp = document.querySelector(".tempo-temp");
+
+const temp_number = document.querySelector(".tempo-temp div");
+
+const temp_unit = document.querySelector(".tempo-temp span");
+
+const max_min = document.querySelector(".max-min");
+
+const humidade = document.querySelector(".humidade");
+
+function displayBranco1() {
+  const branco1 = document.querySelector('.branco1');
+  branco1.style.display = 'block'; // Torna o bloco visível
+}
+
+function criarNovoBranco1() {
+  const novoBranco1 = document.createElement('div');
+  novoBranco1.classList.add('branco1');
+  novoBranco1.innerHTML = `<!-- Conteúdo do bloco branco1 -->`;
+  document.body.appendChild(novoBranco1);
+}
+
+function javascript() {
+  window.addEventListener("load", () => {
+    navigator.geolocation.getCurrentPosition(setPosition, showError);
+
+    function setPosition(position) {
+      console.log(position);
+      let lat = position.coords.latitude;
+      let long = position.coords.longitude;
+      Resultado(lat, long);
+    }
+    function showError(error) {
+      alert(`erro: ${error.message}`);
+    }
+  });
+
+  function Resultado(lat, long) {
+    fetch(
+      `${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`http ERROR`);
         }
-        function fecharlogin() {
-            document.getElementById('modal').style.top = "-100%";
+        return res.json();
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+      .then((res) => {
+        displayResultado(res);
+        displayBranco1();
+      });
+  }
+
+  pesquisa_button.addEventListener("click", function () {
+    buscaResultado(pesquisa.value);
+  });
+
+  pesquisa.addEventListener("keypress", enter);
+  function enter(event) {
+    key = event.keyCode;
+
+    if (key === 13) {
+      buscaResultado(pesquisa.value);
+    }
+  }
+
+  function buscaResultado(cidade) {
+    const textBusca = document.getElementById('textBusca');
+    const buscaContainer = document.querySelector('.busca-container');
+
+    fetch(
+      `${api.base}weather?q=${cidade}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`http error: status ${res.status}`);
         }
+        return res.json();
+      })
+      .then((res) => {
+        textBusca.textContent = "Cidade encontrada com sucesso!";
+        textBusca.classList.remove('texto-erro');
+        textBusca.classList.add('texto-sucesso');
+        buscaContainer.classList.remove('busca-erro');
+        buscaContainer.classList.add('busca-sucesso');
+        displayResultado(res);
+        displayBranco1();
+        criarNovoBranco1();
+      })
+      .catch((error) => {
+        textBusca.textContent = "Cidade inexistente, digite novamente...";
+        textBusca.classList.remove('texto-sucesso');
+        textBusca.classList.add('texto-erro');
+        buscaContainer.classList.remove('busca-sucesso');
+        buscaContainer.classList.add('busca-erro');
+      });
+  }
 
-        function abrirlogin2() {
-            document.getElementById('segundo').style.top = "17.5%";
-        }
-        function fecharlogin2() {
-            document.getElementById('segundo').style.top = "-100%";
-        }
+  function displayResultado(weather) {
+    console.log(weather);
 
+    cidade.innerText = `${weather.name}, ${weather.sys.country}`;
 
-        const api = {
-            key: "b1acd38efcd959af9979088d310b48a2",
-            base: "https://api.openweathermap.org/data/2.5/",
-            lang: "pt_br",
-            units: "metric",
-        }
+    let now = new Date();
+    date.innerText = dataDeHoje(now);
 
-        const pesquisa = document.querySelector('.form-control');
+    let iconName = weather.weather[0].icon;
+    tempo_img.innerHTML = `<img src="./icons/${iconName}.png">`;
 
-        const pesquisa_button = document.querySelector('.btn');
+    let temperatura = `${Math.round(weather.main.temp)}`;
+    temp_number.innerHTML = temperatura;
+    temp_unit.innerHTML = `°c`;
 
-        const cidade = document.querySelector('.cidade');
+    weather_tempo = weather.weather[0].description;
 
-        const date = document.querySelector('.date');
+    weather_t.innerText = Letter(weather_tempo);
 
-        const weather_t = document.querySelector('.ceu');
+    max_min.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(
+      weather.main.temp_max
+    )}°c`;
 
-        const tempo_img = document.querySelector('.tempo-img');
+    humidade.innerHTML = weather.main.humidity;
+  }
 
-        const tempo_temp = document.querySelector('.tempo-temp');
+  function dataDeHoje(d) {
+    let dias = [
+      "Domingo",
+      "Segunda-feira",
+      "Terça-feira",
+      "Quarta-feira",
+      "Quinta-feira",
+      "Sexta-feira",
+      "Sábado",
+    ];
+    let meses = [
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julio",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro",
+    ];
 
-        const temp_number = document.querySelector('.tempo-temp div');
+    let diaSemana = dias[d.getDay()];
+    let dia = d.getDate();
+    let mes = meses[d.getMonth()];
+    let ano = d.getFullYear();
 
-        const temp_unit = document.querySelector('.tempo-temp span');
+    return `${diaSemana}, ${dia} de ${mes} ${ano}`;
+  }
 
-        const max_min = document.querySelector('.max-min');
+  function Letter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+}
 
-        const humidade = document.querySelector('.humidade');
+javascript();
 
-        function javascript() {
-
-            window.addEventListener('load', () => {
-
-                navigator.geolocation.getCurrentPosition(setPosition, showError);
-
-                function setPosition(position) {
-                    console.log(position)
-                    let lat = position.coords.latitude;
-                    let long = position.coords.longitude;
-                    Resultado(lat, long);
-                }
-                function showError(error) {
-                    alert(`erro: ${error.message}`);
-                }
-            })
-
-            function Resultado(lat, long) {
-
-                fetch(`${api.base}weather?lat=${lat}&lon=${long}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
-                    .then(res => {
-                        if (!res.ok) {
-                            throw new Error(`http ERROR`)
-                        }
-                        return res.json();
-                    })
-                    .catch(error => {
-                        alert(error.message)
-                    })
-                    .then(res => {
-                        displayResultado(res)
-                    });
-            }
-
-            pesquisa_button.addEventListener('click', function () {
-                buscaResultado(pesquisa.value)
-            })
-
-            pesquisa.addEventListener('keypress', enter)
-            function enter(event) {
-                key = event.keyCode
-
-                if (key === 13) {
-                    buscaResultado(pesquisa.value)
-                }
-            }
-
-            function buscaResultado(cidade) {
-
-                fetch(`${api.base}weather?q=${cidade}&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
-                    .then(res => {
-                        if (!res.ok) {
-                            throw new Error(`http error: status ${res.status}`)
-                        }
-                        return res.json();
-                    })
-                    .catch(error => {
-                        alert(error.message)
-                    })
-                    .then(res => {
-                        displayResultado(res)
-                    });
-            }
-
-            function displayResultado(weather) {
-
-                console.log(weather)
-
-                cidade.innerText = `${weather.name}, ${weather.sys.country}`;
-
-                let now = new Date();
-                date.innerText = dataDeHoje(now);
-
-                let iconName = weather.weather[0].icon;
-                tempo_img.innerHTML = `<img src="./icons/${iconName}.png">`;
-
-                let temperatura = `${Math.round(weather.main.temp)}`;
-                temp_number.innerHTML = temperatura;
-                temp_unit.innerHTML = `°c`;
-
-                weather_tempo = weather.weather[0].description;
-
-                weather_t.innerText = Letter(weather_tempo);
-
-                max_min.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
-
-                humidade.innerHTML = weather.main.humidity;
-            }
-
-            function dataDeHoje(d) {
-
-                let dias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-                let meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julio", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-
-                let diaSemana = dias[d.getDay()];
-                let dia = d.getDate();
-                let mes = meses[d.getMonth()];
-                let ano = d.getFullYear();
-
-                return `${diaSemana}, ${dia} de ${mes} ${ano}`;
-            }
-
-            function Letter(string) {
-                return string.charAt(0).toUpperCase() + string.slice(1);
-            }
-        }
-
-        javascript();
