@@ -67,7 +67,11 @@ function javascript() {
         return res.json();
       })
       .catch((error) => {
-        alert(error.message);
+        textBusca.textContent = "Cidade inexistente, digite novamente...";
+        textBusca.classList.remove('texto-sucesso');
+        textBusca.classList.add('texto-erro');
+        buscaContainer.classList.remove('busca-sucesso');
+        buscaContainer.classList.add('busca-erro');
       })
       .then((res) => {
         displayResultado(res);
